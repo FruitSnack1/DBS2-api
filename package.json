@@ -1,0 +1,24 @@
+{
+  "name": "dbs2-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FruitSnack1/DBS2-api.git"
+  },
+  "author": "Tomáš Rýzner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FruitSnack1/DBS2-api/issues"
+  },
+  "homepage": "https://github.com/FruitSnack1/DBS2-api#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
