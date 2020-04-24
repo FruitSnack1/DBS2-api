@@ -1,0 +1,175 @@
+doctype html
+html(lang='cs')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(href='https://fonts.googleapis.com/css?family=Work+Sans:400,700,900&display=swap', rel='stylesheet')
+    link(rel='stylesheet', href='fonts/icomoon/style.css')
+    link(rel='stylesheet', href='css/bootstrap.min.css')
+    link(rel='stylesheet', href='css/bootstrap-datepicker.css')
+    link(rel='stylesheet', href='css/jquery.fancybox.min.css')
+    link(rel='stylesheet', href='css/owl.carousel.min.css')
+    link(rel='stylesheet', href='css/owl.theme.default.min.css')
+    link(rel='stylesheet', href='fonts/flaticon/font/flaticon.css')
+    link(rel='stylesheet', href='css/aos.css')
+    link(rel='stylesheet', href='css/style.css')
+  body(data-spy='scroll', data-target='.site-navbar-target', data-offset='300')
+    #home-section.site-wrap
+      .site-mobile-menu.site-navbar-target
+        .site-mobile-menu-header
+          .site-mobile-menu-close.mt-3
+            span.icon-close2.js-menu-toggle
+        .site-mobile-menu-body
+      header.site-navbar.site-navbar-target(role='banner')
+        .container
+          .row.align-items-center.position-relative
+            .col-3
+              .site-logo
+                a.font-weight-bold(href='index.html')
+                  img.img-fluid(src='images/logo.png', alt='Image')
+            .col-9.text-right
+              span.d-inline-block.d-lg-none
+                a.text-white.site-menu-toggle.js-menu-toggle.py-5.text-white(href='#')
+                  span.icon-menu.h3.text-white
+              nav.site-navigation.text-right.ml-auto.d-none.d-lg-block(role='navigation')
+                ul.site-menu.main-menu.js-clone-nav.ml-auto
+                  li
+                    a.nav-link(href='index.html') Domů
+                  li
+                    a.nav-link(href='#about') SPD
+                  li
+                    a.nav-link(href='#pernamentky') Pernametky
+                  li
+                    a.nav-link(href='#kontakt') Kontakt
+                  li
+                    a.nav-link(href='/login') Přihlášení
+      #about.ftco-blocks-cover-1
+        .site-section-cover.overlay(style="background-image: url('images/hero_1.jpg')")
+          .container
+            .row.align-items-center
+              .col-md-5(data-aos='fade-right')
+                h1.mb-3.text-white
+                  | Skiareál 
+                  br
+                  |  Pěkný 
+                  br
+                  |  Den
+                p Zakládáme si na spolupráci s vámi. Jsme perfektní úroveň na vysokym potenciálu.
+      .site-section.py-5
+        .container
+          .row.align-items-center
+            .col-md-6
+              .heading-39101.mb-5
+                span.subtitle-39191 Skiareál
+                h3 Skiareál Pěkný Den
+              p V případě zájmu o extrémní zážitek neváhejte nás kontaktovat.
+              p Nabízíme široké spektrum pernamentek včetně těch zvýhodněných.
+            .col-md-6(data-aos='fade-right')
+              img.img-fluid(src='images/traveler.jpg', alt='Image')
+      #pernamentky.site-section
+        .container
+          .row.justify-content-center.text-center
+            .col-md-7
+              .heading-39101.mb-5
+                span.backdrop.text-center Pernamentky
+                span.subtitle-39191 Pernamentky
+                h3 Možnosti pernamentek
+          .row
+            .col-lg-4.col-md-6.mb-4(data-aos='fade-up')
+              .listing-item
+                .listing-image
+                  img.img-fluid(src='images/img_1.jpg', alt='Image')
+                .listing-item-content
+                  a.px-3.mb-3.category.bg-primary(href='#') $5
+                  h2.mb-1
+                    a(href='trip-single.html') Jednorázová
+            .col-lg-4.col-md-6.mb-4(data-aos='fade-up')
+              .listing-item
+                .listing-image
+                  img.img-fluid(src='images/img_2.jpg', alt='Image')
+                .listing-item-content
+                  a.px-3.mb-3.category.bg-primary(href='#') $4
+                  h2.mb-1
+                    a(href='trip-single.html') Pro jednoho (nutná registrace)
+            .col-lg-4.col-md-6.mb-4(data-aos='fade-up')
+              .listing-item
+                .listing-image
+                  img.img-fluid(src='images/img_3.jpg', alt='Image')
+                .listing-item-content
+                  a.px-3.mb-3.category.bg-primary(href='#') $10
+                  h2.mb-1
+                    a(href='trip-single.html') Rodinná (nutná registrace)
+      .site-section
+        .container
+          .row.justify-content-center.text-center
+            .col-md-10
+              .heading-39101.mb-5
+                span.backdrop.text-center Registrace
+                span.subtitle-39191 Registrace
+                h3 Jak na to?
+          div
+            .row
+              .col-md-6
+                .testimonial-39191.d-flex(style='text-align: center !important;')
+                  a(href='registrace.html')
+                    div
+                      h1(style='font-weight: bold;') Registrace
+              .col-md-6
+                .testimonial-39191.d-flex(style='text-align: center !important;')
+                  a(href='login.html')
+                    div
+                      h1(style='font-weight: bold;') Přihlášení
+      .site-section.bg-image.overlay(style="background-image: url('images/hero_1.jpg')")
+        .container
+          .row.justify-content-center
+            .col-md-7.text-center
+              h2.font-weight-bold.text-white Máte nějakou otázku?
+              p.text-white
+                | Nebojte se nás kontaktovat a zašlete nám zprávu nebo nás kontaktujte jiným způsobem!
+              p.mb-0
+                a.btn.btn-primary.text-white.py-3.px-4(href='#') Kontaktujte nás
+      footer.site-footer.bg-light
+        .container
+          .row
+            .col-lg-3
+              h2.footer-heading.mb-3 Instagram
+              .row
+                .col-4.gal_col
+                  a(href='#')
+                    img.img-fluid(src='images/insta_1.jpg', alt='Image')
+                .col-4.gal_col
+                  a(href='#')
+                    img.img-fluid(src='images/insta_2.jpg', alt='Image')
+                .col-4.gal_col
+                  a(href='#')
+                    img.img-fluid(src='images/insta_3.jpg', alt='Image')
+            .col-lg-8.ml-auto
+              .row
+                .col-lg-6.ml-auto
+                  h2.footer-heading.mb-4 Navigace
+                  ul.list-unstyled
+                    li
+                      a(href='#') SPD
+                    li
+                      a(href='#') Pernamentky
+                    li
+                      a(href='#') Přihlášení
+                    li
+                      a(href='#') Registrace
+                    li
+                      a(href='#') Kontakt
+    script(src='js/jquery-3.3.1.min.js')
+    script(src='js/jquery-migrate-3.0.0.js')
+    script(src='js/popper.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/owl.carousel.min.js')
+    script(src='js/jquery.sticky.js')
+    script(src='js/jquery.waypoints.min.js')
+    script(src='js/jquery.animateNumber.min.js')
+    script(src='js/jquery.fancybox.min.js')
+    script(src='js/jquery.stellar.min.js')
+    script(src='js/jquery.easing.1.3.js')
+    script(src='js/bootstrap-datepicker.min.js')
+    script(src='js/isotope.pkgd.min.js')
+    script(src='js/aos.js')
+    script(src='js/main.js')

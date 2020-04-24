@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="css/bootstrap/bootstrap.css")
+    title Přihlášení
+  body
+    .container-fluid
+      .row.mt-5
+        .col-4.offset-4
+          .card
+            .card-body
+              h5.card-title Přihlášení
+              form(action="/login", method='post')
+                .form-group
+                  label(for="") Přihlašovací jméno
+                  input.form-control(type="text", name="username")
+                .form-group
+                  label(for="") Heslo
+                  input.form-control(type="password", name="password")
+                button.btn.btn-primary(type='submit') Přihlásit se

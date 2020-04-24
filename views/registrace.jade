@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="css/bootstrap/bootstrap.css")
+        title Registrace
+    body
+        .container-fluid
+            form(action="/zakaznik" method='post')
+                .row.mt-5
+                    
+                    .col-4.offset-4.mb-5
+                        .card
+                            .card-body
+                                h5.card-title Registrace
+                                h6 Osobní údaje
+                                .form-group
+                                label(for="") Jméno
+                                input.form-control(type="text" name="firstname")
+                                .form-group
+                                label(for="") Příjmení
+                                input.form-control(type="text" name="lastname")
+                                .form-group
+                                label(for="") E-mail
+                                input.form-control(type="text" name="email")
+                                .form-group
+                                label(for="") Telefon
+                                input.form-control(type="text" name="phone")
+                                .form-group
+                                label(for="") Datum narození
+                                input.form-control(type="date" name="birthdate")
+                                
+                                
+                    .col-4.offset-4.mb-5
+                        .card
+                            .card-body
+                                h6 Adresa
+                                .form-group
+                                label(for="") Ulice
+                                input.form-control(type="text" name="street")
+                                .form-group
+                                label(for="") Číslo popisné
+                                input.form-control(type="text" name="cp")
+                                .form-group
+                                label(for="") Město
+                                input.form-control(type="text" name="city")
+                                .form-group
+                                label(for="") PSČ
+                                input.form-control(type="text" name="psc")
+                    .col-4.offset-4.mb-5
+                        .card
+                            .card-body
+                                h6 Přihlašovací údaje
+                                .form-group
+                                label(for="") Uživatelské jméno
+                                input.form-control(type="text" name="username")
+                                .form-group
+                                label(for="") Heslo
+                                input.form-control(type="password" name="password")
+                                button.btn.btn-primary.mt-5(type='submit') Registrovat se
+
+                
