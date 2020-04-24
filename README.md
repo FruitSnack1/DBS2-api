@@ -10,7 +10,7 @@ Nainstalujte všechny potřebné knihovny
 ```
 npm install
 ```
-Přidejte do kořenového adresáře soubor `.env`a nastavte připojení k Mysql Databázi
+Přidejte do kořenového adresáře soubor `.env`a nastavte připojení k Mysql databázi
 ```
 HOST=db_host
 PORT=db_port
