@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-function authenticateToken(req, res, next) {
+authenticateToken = (req, res, next) => {
     const token = req.cookies['accessToken'];
     if (token == null) return res.sendStatus(401)
 
@@ -11,6 +11,11 @@ function authenticateToken(req, res, next) {
     })
 }
 
+generateAccessToken = (data) => {
+    return jwt.sign(data, process.env.ACCESS_TOKEN_SECRET)
+}
+
 module.exports = {
-    authenticateToken
+    authenticateToken,
+    generateAccessToken
 };

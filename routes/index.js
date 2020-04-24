@@ -48,7 +48,7 @@ router.get('/sjezdovka/stav/:id', (req, res) => {
 
 router.post('/zakaznik', (req, res) => {
     console.log(req.body)
-    req.body.password = cryptoJs.SHA256(req.body.name).toString()
+    req.body.password = cryptoJs.SHA256(req.body.password).toString()
     let query = `CALL addZakaznik("${req.body.firstname}","${req.body.lastname}","${req.body.email}","${req.body.phone}","${req.body.birthdate}","${req.body.username}","${req.body.password}","${req.body.street}","${req.body.cp}","${req.body.city}","${req.body.psc}",)`
     console.log(query)
     connection.query(`CALL addZakaznik("${req.body.firstname}","${req.body.lastname}","${req.body.email}","${req.body.phone}","${req.body.birthdate}","${req.body.username}","${req.body.password}","${req.body.street}",${req.body.cp},"${req.body.city}",${req.body.psc})`, (error, results) => {
@@ -58,7 +58,22 @@ router.post('/zakaznik', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
+    connection.query(`SELECT prihlasovaciHeslo, ZakaznikID FROM Zakaznici WHERE prihlasovaciJmeno = "${req.body.username}"`, (error, results) => {
+        if (error) throw error
+        const hash = cryptoJs.SHA256(req.body.password).toString()
+        if (hash === results[0].prihlasovaciHeslo) {
+            const tokenUser = { 'id': results[0].ZakaznikID }
+            const accessToken = auth.generateAccessToken(tokenUser)
 
+            res.cookie('accessToken', accessToken);
+            res.status(200).json({ message: 'logged in' })
+        } else
+            res.status(500).json({ message: 'wrong password' })
+    })
+})
+
+router.get('/protected', auth.authenticateToken, (req, res) => {
+    res.send('protected')
 })
 
 
