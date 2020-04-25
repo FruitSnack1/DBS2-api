@@ -190,17 +190,9 @@ router.post('/login', (req, res) => {
     })
 })
 
-router.get('/protected', auth.authenticateToken, (req, res) => {
-    res.send('protected')
-})
 
-router.get('/image', (req, res) => {
-    res.render('image')
-})
-
-router.post('/fotky', (req, res) => {
+router.post('/fotky', auth.authenticateToken, (req, res) => {
     connection.query(`INSERT INTO Obrazky VALUES (null, "img","${req.files.image.data.toString('base64')}")`, (error, results) => {
-        // if (error) return console.log(error)
         res.redirect('/fotky')
     })
 })
