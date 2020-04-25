@@ -1,0 +1,92 @@
+doctype html
+html(lang='en')
+    head
+        title SPD
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900' rel='stylesheet')
+        link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(rel='stylesheet' href='../css/all.min.css')
+        link(rel='stylesheet' href='../scss/style.css')
+        link(rel="stylesheet", href="../css/bootstrap/bootstrap.css")
+    body
+        .wrapper.d-flex.align-items-stretch
+            nav#sidebar
+                .custom-menu
+                .img.bg-wrap.text-center.py-4(style='background-color:cornsilk' onclick='location.href = "/"')
+                    .user-logo
+                        .img(style='background-image: url(../images/logo.png);')
+                ul.list-unstyled.components.mb-5
+                    li
+                        a(href='/admin/sjezdovky')  
+                            i.fas.fa-skiing.mr-2 
+                            |Sjezdovky
+                    li
+                        a(href='/admin/zamestnanci')  
+                            i.fas.fa-users.mr-2 
+                            |Zaměstnanci
+                    li
+                        a(href='/logout')  
+                            i.fas.fa-sign-out-alt.mr-2 
+                            |Odhlásit se
+            #content.p-4.p-md-5.pt-5
+                form(action="/admin/pridatzamestnance", method='post')
+                    .row    
+                        .col-12.mb-5
+                            .card
+                                .card-body
+                                    h5.card-title Registrace
+                                    h6 Osobní údaje
+                                    .form-group
+                                        label(for="") Jméno
+                                        input.form-control(type="text" name="firstname" required )
+                                    .form-group
+                                        label(for="") Příjmení
+                                        input.form-control(type="text" name="lastname" required)
+                                    .form-group
+                                        label(for="") E-mail
+                                        input.form-control(type="text" name="email" required)
+                                    .form-group
+                                        label(for="") Telefon
+                                        input.form-control(type="text" name="phone" required)
+                                    .form-group
+                                        label(for="") Povolání
+                                        input.form-control(type="text" name="job" required)
+
+                        .col-12.mb-5
+                            .card
+                                .card-body
+                                    h6 Adresa
+                                    .form-group
+                                        label(for="") Ulice
+                                        input.form-control(type="text" name="street" required)
+                                    .form-group
+                                        label(for="") Číslo popisné
+                                        input.form-control(type="text" name="cp" required)
+                                    .form-group
+                                        label(for="") Město
+                                        input.form-control(type="text" name="city" required)
+                                    .form-group
+                                        label(for="") PSČ
+                                        input.form-control(type="text" name="psc" required)
+
+                        .col-12.mb-5
+                            .card
+                                .card-body
+                                    h6 Pokladna
+                                    .form-group
+                                        label(for="") Pokladna
+                                        select.form-control(name='pokladna')
+                                            option(value="null") Žádná pokladna
+                                            each p, i in pokladny
+                                                option(value=p.PokladnaID) #{p.Nazev}
+                        
+                        .col-12
+                            button.btn.btn-primary.btn-block Přidat zaměstnance
+                                    
+                                    
+
+        script(src='../js/jquery.min.js')
+        script(src='../js/popper.js')
+        script(src='../js/bootstrap.min.js')
+        script(src='../js/main.js')

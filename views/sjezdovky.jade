@@ -1,43 +1,85 @@
 doctype html
 html(lang='en')
-  head
-    title SPD
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900', rel='stylesheet')
-    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-    link(rel='stylesheet', href='scss/style.css')
-  body
-    .wrapper.d-flex.align-items-stretch
-      nav#sidebar
-        .custom-menu
-        .img.bg-wrap.text-center.py-4(style='background-color:cornsilk', onclick='location.href = "/"')
-          .user-logo
-            .img(style='background-image: url(images/logo.png);')
-        ul.list-unstyled.components.mb-5
-          li.active
-            a(href='/sjezdovky')  Sjezdovky
-          li
-            a(href='#')  Obrázky
-      #content.p-4.p-md-5.pt-5
-        each sjezd, i in sjezdovky
-            .sidebar_item.mb-5
-            h3.mb-4.pl-3 #{sjezd.Nazev}
-            p.mb-2.pl-3.h6
-                span.fa.fa-child
-                |  Minimální věk: #{sjezd.minVek}
-            p.mb-2.pl-3.h6
-                span.fa.fa-clock-o
-                |  Otvírací doba: #{sjezd.Otevrenaod} - #{sjezd.Otevrenado} 
-            p.mb-2.pl-3.h6
-                span.fa.fa-mixcloud
-                |  Rychlost větru: #{sjezd.Rychlostvetru}
-            p.mb-2.pl-3.h6
-                span.fa.fa-thermometer-empty
-                |  Teplota: #{sjezd.Teplota}
-            hr.sidebar_hr
-        
-    script(src='js/jquery.min.js')
-    script(src='js/popper.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/main.js')
+    head
+        title SPD
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        //- link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900' rel='stylesheet')
+        link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(rel='stylesheet' href='css/all.min.css')
+        link(rel='stylesheet' href='scss/style.css')
+        link(rel='stylesheet' href='css/main.css')
+    body
+        .wrapper.d-flex.align-items-stretch
+            nav#sidebar
+                .custom-menu
+                .img.bg-wrap.text-center.py-4(style='background-color:cornsilk' onclick='location.href = "/"')
+                    .user-logo
+                        .img(style='background-image: url(images/logo.png);')
+                ul.list-unstyled.components.mb-5
+                    li.active
+                        a(href='/sjezdovky')  Sjezdovky
+                    li
+                        a(href='/logout')  
+                            i.fas.fa-sign-out-alt.mr-2 
+                            |Odhlásit se
+            #content.p-4.p-md-5.pt-5
+                .row
+                    each sjezd, i in sjezdovky
+                        .col-6
+                            .card.mb-3
+                                .card-header 
+                                    h5.card-nadpis #{sjezd.Nazev}
+                                ul.list-group.list-group-flush
+                                    li.list-group-item
+                                        i.fas.fa-child.card-icon
+                                        | Minimální věk: #{sjezd.minVek}
+                                    li.list-group-item
+                                        i.fas.fa-clock-o.card-icon
+                                        |  Otvírací doba: #{sjezd.Otevrenaod} - #{sjezd.Otevrenado} 
+                                    li.list-group-item
+                                        i.fas.fa-wind.card-icon
+                                        |  Rychlost větru: #{sjezd.Rychlostvetru} m/s
+                                    li.list-group-item
+                                        i.fas.fa-thermometer-empty.card-icon
+                                        |  Teplota: #{sjezd.Teplota} °C
+
+
+
+
+
+                                    //- p      
+                                    //-     i.fas.fa-child.card-icon
+                                    //-     | Minimální věk: #{sjezd.minVek}
+                                    //- p
+                                    //-     i.fas.fa-clock-o.card-icon
+                                    //-     |  Otvírací doba: #{sjezd.Otevrenaod} - #{sjezd.Otevrenado} 
+                                    //- p
+                                    //-     i.fas.fa-wind.card-icon
+                                    //-     |  Rychlost větru: #{sjezd.Rychlostvetru}
+                                    //- p
+                                    //-     i.fas.fa-thermometer-empty.card-icon
+                                    //-     |  Teplota: #{sjezd.Teplota}
+
+
+
+                    //- .sidebar_item.mb-5
+                    //- h3.mb-4.pl-3 #{sjezd.Nazev}
+                    //- p.mb-2.pl-3.h6
+                    //-     span.fa.fa-child
+                    //-     |  Minimální věk: #{sjezd.minVek}
+                    //- p.mb-2.pl-3.h6
+                    //-     span.fa.fa-clock-o
+                    //-     |  Otvírací doba: #{sjezd.Otevrenaod} - #{sjezd.Otevrenado} 
+                    //- p.mb-2.pl-3.h6
+                    //-     span.fa.fa-mixcloud
+                    //-     |  Rychlost větru: #{sjezd.Rychlostvetru}
+                    //- p.mb-2.pl-3.h6
+                    //-     span.fa.fa-thermometer-empty
+                    //-     |  Teplota: #{sjezd.Teplota}
+                    //- hr.sidebar_hr
+
+        script(src='js/jquery.min.js')
+        script(src='js/popper.js')
+        script(src='js/bootstrap.min.js')
+        script(src='js/main.js')

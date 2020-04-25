@@ -4,6 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="css/bootstrap/bootstrap.css")
+        link(rel="icon" href="images/logo.png")
         title Registrace
     body
         .container-fluid
@@ -16,20 +17,20 @@ html(lang="en")
                                 h5.card-title Registrace
                                 h6 Osobní údaje
                                 .form-group
-                                label(for="") Jméno
-                                input.form-control(type="text" name="firstname")
+                                    label(for="") Jméno
+                                    input.form-control(type="text" name="firstname" required )
                                 .form-group
-                                label(for="") Příjmení
-                                input.form-control(type="text" name="lastname")
+                                    label(for="") Příjmení
+                                    input.form-control(type="text" name="lastname" required)
                                 .form-group
-                                label(for="") E-mail
-                                input.form-control(type="text" name="email")
+                                    label(for="") E-mail
+                                    input.form-control(type="text" name="email" required)
                                 .form-group
-                                label(for="") Telefon
-                                input.form-control(type="text" name="phone")
+                                    label(for="") Telefon
+                                    input.form-control(type="text" name="phone" required)
                                 .form-group
-                                label(for="") Datum narození
-                                input.form-control(type="date" name="birthdate")
+                                    label(for="") Datum narození
+                                    input.form-control(type="date" name="birthdate" required)
                                 
                                 
                     .col-4.offset-4.mb-5
@@ -37,27 +38,27 @@ html(lang="en")
                             .card-body
                                 h6 Adresa
                                 .form-group
-                                label(for="") Ulice
-                                input.form-control(type="text" name="street")
+                                    label(for="") Ulice
+                                    input.form-control(type="text" name="street" required)
                                 .form-group
-                                label(for="") Číslo popisné
-                                input.form-control(type="text" name="cp")
+                                    label(for="") Číslo popisné
+                                    input.form-control(type="text" name="cp" required)
                                 .form-group
-                                label(for="") Město
-                                input.form-control(type="text" name="city")
+                                    label(for="") Město
+                                    input.form-control(type="text" name="city" required)
                                 .form-group
-                                label(for="") PSČ
-                                input.form-control(type="text" name="psc")
+                                    label(for="") PSČ
+                                    input.form-control(type="text" name="psc" required)
                     .col-4.offset-4.mb-5
                         .card
                             .card-body
                                 h6 Přihlašovací údaje
                                 .form-group
-                                label(for="") Uživatelské jméno
-                                input.form-control(type="text" name="username")
+                                    label(for="") Uživatelské jméno
+                                    input.form-control(type="text" name="username" required)
                                 .form-group
-                                label(for="") Heslo
-                                input.form-control(type="password" name="password")
+                                    label(for="") Heslo
+                                    input.form-control(type="password" name="password" required)
                                 button.btn.btn-primary.mt-5(type='submit') Registrovat se
 
                 

@@ -21,11 +21,14 @@ html(lang='en')
                             i.fas.fa-skiing.mr-2 
                             |Sjezdovky
                     li
+                        a(href='/admin/zamestnanci')  
+                            i.fas.fa-users.mr-2 
+                            |Zaměstnanci
+                    li
                         a(href='/logout')  
                             i.fas.fa-sign-out-alt.mr-2 
                             |Odhlásit se
             #content.p-4.p-md-5.pt-5
-                h4 Dobrý den #{user.name}
 
         script(src='js/jquery.min.js')
         script(src='js/popper.js')
