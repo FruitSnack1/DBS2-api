@@ -7,7 +7,11 @@ var upload = multer({ dest: '/' })
 
 
 const auth = require('../modules/auth-module.js')
-console.log(process.env.USER)
+console.log(process.env.MYSQL_HOST)
+console.log(process.env.MYSQL_PORT)
+console.log(process.env.MYSQL_USER)
+console.log(process.env.MYSQL_PASSWORD)
+console.log(process.env.MYSQL_DB)
 let connection = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
