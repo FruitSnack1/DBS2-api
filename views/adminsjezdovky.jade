@@ -6,18 +6,18 @@ html(lang='en')
         meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
         link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900' rel='stylesheet')
         link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-        link(rel='stylesheet' href='css/all.min.css')
-        link(rel='stylesheet' href='scss/style.css')
-        link(rel="stylesheet", href="css/bootstrap/bootstrap.css")
+        link(rel='stylesheet' href='../css/all.min.css')
+        link(rel='stylesheet' href='../scss/style.css')
+        link(rel="stylesheet" href="../css/bootstrap/bootstrap.css")
     body
         .wrapper.d-flex.align-items-stretch
             nav#sidebar
                 .custom-menu
                 .img.bg-wrap.text-center.py-4(style='background-color:cornsilk' onclick='location.href = "/admin"')
                     .user-logo
-                        .img(style='background-image: url(images/logo.png);')
+                        .img(style='background-image: url(../images/logo.png);')
                 ul.list-unstyled.components.mb-5
-                    li
+                    li.active
                         a(href='/admin/sjezdovky')  
                             i.fas.fa-skiing.mr-2 
                             |Sjezdovky
@@ -34,8 +34,24 @@ html(lang='en')
                             i.fas.fa-sign-out-alt.mr-2 
                             |Odhlásit se
             #content.p-4.p-md-5.pt-5
+                table.table
+                    thead.thead-dark
+                        th Název
+                        th Minimální věk
+                        th Otevřeno od
+                        th Otevřeno do
+                        th Stavy
+                    tbody
+                        each s, i in sjezdovky
+                            tr
+                                th #{s.Nazev}
+                                th #{s.minVek}
+                                th #{s.Otevrenaod}
+                                th #{s.Otevrenado}
+                                th
+                                    button.btn.btn-secondary(onclick='location.href = "/admin/sjezdovka/stav/#{s.SjezdovkaID}"') Zobrazit stavy
 
-        script(src='js/jquery.min.js')
-        script(src='js/popper.js')
-        script(src='js/bootstrap.min.js')
-        script(src='js/main.js')
+        script(src='../js/jquery.min.js')
+        script(src='../js/popper.js')
+        script(src='../js/bootstrap.min.js')
+        script(src='../js/main.js')

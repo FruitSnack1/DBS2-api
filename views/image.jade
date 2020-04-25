@@ -1,6 +1,6 @@
 html
     head
     body
-        form(action="/image", method='post')
+        form(action="/image", method='post', enctype="multipart/form-data")
             input(type="file", name='image')
             button(type="submit") Submit

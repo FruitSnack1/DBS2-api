@@ -11,7 +11,7 @@ app.use(fileUpload());
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'));
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.set('view engine', 'jade');
 

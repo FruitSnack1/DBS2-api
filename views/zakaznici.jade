@@ -1,21 +1,21 @@
 doctype html
 html(lang='en')
     head
-        title SPD
+        title Admin panel
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
         link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900' rel='stylesheet')
         link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-        link(rel='stylesheet' href='css/all.min.css')
-        link(rel='stylesheet' href='scss/style.css')
-        link(rel="stylesheet", href="css/bootstrap/bootstrap.css")
+        link(rel='stylesheet' href='../css/all.min.css')
+        link(rel='stylesheet' href='../scss/style.css')
+        link(rel="stylesheet", href="../css/bootstrap/bootstrap.css")
     body
         .wrapper.d-flex.align-items-stretch
             nav#sidebar
                 .custom-menu
                 .img.bg-wrap.text-center.py-4(style='background-color:cornsilk' onclick='location.href = "/admin"')
                     .user-logo
-                        .img(style='background-image: url(images/logo.png);')
+                        .img(style='background-image: url(../images/logo.png);')
                 ul.list-unstyled.components.mb-5
                     li
                         a(href='/admin/sjezdovky')  
@@ -25,7 +25,7 @@ html(lang='en')
                         a(href='/admin/zamestnanci')  
                             i.fas.fa-user-tie.mr-2 
                             |Zaměstnanci
-                    li
+                    li.active
                         a(href='/admin/zakaznici')  
                             i.fas.fa-users.mr-2 
                             |Zákazníci
@@ -34,8 +34,30 @@ html(lang='en')
                             i.fas.fa-sign-out-alt.mr-2 
                             |Odhlásit se
             #content.p-4.p-md-5.pt-5
+                table.table
+                    thead.thead-dark
+                        th Jméno
+                        th Příjemní
+                        th E-mail
+                        th Telefon
+                        th Město
+                        th Ulice
+                        th Č.P.
+                        th Přihlašovací jméno
+                    tbody
+                        each z, i in zakaznici
+                            tr
+                                th #{z.Jmeno}
+                                th #{z.Prijmeni}
+                                th #{z.Mail}
+                                th #{z.Telefon}
+                                th #{z.Mesto}
+                                th #{z.Ulice}
+                                th #{z.Cislo}
+                                th #{z.prihlasovaciJmeno}
+                                    
 
-        script(src='js/jquery.min.js')
-        script(src='js/popper.js')
-        script(src='js/bootstrap.min.js')
-        script(src='js/main.js')
+        script(src='../js/jquery.min.js')
+        script(src='../js/popper.js')
+        script(src='../js/bootstrap.min.js')
+        script(src='../js/main.js')
