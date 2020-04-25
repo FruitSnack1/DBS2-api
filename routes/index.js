@@ -1,17 +1,11 @@
+//import knihoven
 const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
 const cryptoJs = require('crypto-js')
-var multer = require('multer')
-var upload = multer({ dest: '/' })
-
-
 const auth = require('../modules/auth-module.js')
-console.log(process.env.MYSQL_HOST)
-console.log(process.env.MYSQL_PORT)
-console.log(process.env.MYSQL_USER)
-console.log(process.env.MYSQL_PASSWORD)
-console.log(process.env.MYSQL_DB)
+
+//pripojeni k databazi
 let connection = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
@@ -25,24 +19,28 @@ connection.connect((err) => {
     console.log('Database connected...')
 })
 
+//render uvodni stranky
 router.get('/', (req, res) => {
-
     res.render('index')
 })
 
+//odhlaseni uzivatele
 router.get('/logout', (req, res) => {
     res.cookie('accessToken', 0, { maxAge: 0 });
     res.redirect('/')
 })
 
+//render admin panelu
 router.get('/admin', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
     res.render('admin')
 })
 
+//render prihlaseni pro admina
 router.get('/admin/login', (req, res) => {
     res.render('adminlogin')
 })
 
+//smazani zamestnance podle id
 router.get('/zamestnanci/propustit/:id', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
     connection.query(`DELETE FROM Zamestnanci WHERE ZamestnanecID = ${req.params.id}`, (error, results) => {
         if (error) return console.log(error)
@@ -50,6 +48,7 @@ router.get('/zamestnanci/propustit/:id', auth.authenticateToken, auth.authentica
     })
 })
 
+//prihlaseni admina
 router.post('/adminlogin', (req, res) => {
     connection.query(`SELECT * FROM AdminUdaje`, (error, results) => {
         if (error) return console.log(error)
@@ -67,6 +66,7 @@ router.post('/adminlogin', (req, res) => {
     })
 })
 
+//render zamestnancu (admin pristup)
 router.get('/admin/zamestnanci', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
     connection.query('SELECT * FROM Zamestnanci LEFT JOIN Adresy ON Zamestnanci.AdresaID = Adresy.AdresaID', (error, results) => {
         if (error) return console.log(error)
@@ -75,6 +75,7 @@ router.get('/admin/zamestnanci', auth.authenticateToken, auth.authenticateAdmin,
     })
 })
 
+//render formulare pro pridani zamestnance
 router.get('/admin/pridatzamestnance', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
     connection.query('SELECT * FROM Pokladny', (error, results) => {
         if (error) return console.log(error)
@@ -83,27 +84,29 @@ router.get('/admin/pridatzamestnance', auth.authenticateToken, auth.authenticate
     })
 })
 
+//pridani zamestnance
 router.post('/admin/pridatzamestnance', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
-    // res.json(req.body)
     connection.query(`CALL pridejZamestnance("${req.body.firstname}","${req.body.lastname}","${req.body.email}","${req.body.phone}","${req.body.job}","${req.body.street}",${req.body.cp},"${req.body.city}",${req.body.psc},${req.body.pokladna})`, (error, results) => {
         if (error) return console.log(error)
         res.redirect('/admin/zamestnanci')
     })
 })
 
+//render registrace uzivatele
 router.get('/register', (req, res) => {
     res.render('registrace')
 })
 
+//render prihlaseni uzivatele
 router.get('/login', (req, res) => {
     res.render('login')
 })
 
 router.get('/home', auth.authenticateToken, (req, res) => {
-    console.log(req.user)
     res.render('home', { user: req.user })
 })
 
+//sjezdovky na admin panelu
 router.get('/admin/sjezdovky', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
     connection.query('SELECT * FROM Sjezdovky', (error, results) => {
         if (error) return console.log(error)
@@ -116,6 +119,7 @@ router.get('/admin/sjezdovky', auth.authenticateToken, auth.authenticateAdmin, (
     })
 })
 
+//sjezdovky na admin panelu
 router.get('/admin/sjezdovka/stav/:id', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
     connection.query(`SELECT * FROM StavySjezdovek WHERE SjezdovkaID = ${req.params.id}`, (error, results) => {
         if (error) return console.log(error)
@@ -128,6 +132,7 @@ router.get('/admin/sjezdovka/stav/:id', auth.authenticateToken, auth.authenticat
     })
 })
 
+//zakaznici na admin panelu
 router.get('/admin/zakaznici', auth.authenticateToken, auth.authenticateAdmin, (req, res) => {
     connection.query('SELECT * FROM Zakaznici LEFT JOIN Adresy ON Zakaznici.AdresaID = Adresy.AdresaID', (error, results) => {
         if (error) return console.log(error)
@@ -136,6 +141,7 @@ router.get('/admin/zakaznici', auth.authenticateToken, auth.authenticateAdmin, (
     })
 })
 
+//sjezdovky
 router.get('/sjezdovky', auth.authenticateToken, (req, res) => {
     connection.query('SELECT * FROM Sjezdovky LEFT JOIN PosledniAktualizaceStavu ON Sjezdovky.SjezdovkaID = PosledniAktualizaceStavu.SjezdovkaID', (error, results) => {
         if (error) return console.log(error)
@@ -149,20 +155,7 @@ router.get('/sjezdovky', auth.authenticateToken, (req, res) => {
     })
 })
 
-router.get('/vleky', (req, res) => {
-    connection.query('SELECT * FROM Vleky', (error, results) => {
-        if (error) return console.log(error)
-        res.json(results)
-    })
-})
-
-router.get('/sjezdovka/stav/:id', (req, res) => {
-    connection.query(`SELECT * FROM StavySjezdovek WHERE StavsjezdovkyID = ${req.params.id}`, (error, results) => {
-        if (error) return console.log(error)
-        res.json(results)
-    })
-})
-
+//regisrace zakaznika
 router.post('/zakaznik', (req, res) => {
     console.log(req.body.birthdate)
     req.body.password = cryptoJs.SHA256(req.body.password).toString()
@@ -172,6 +165,7 @@ router.post('/zakaznik', (req, res) => {
     })
 })
 
+//prihlaseni zakaznika
 router.post('/login', (req, res) => {
     connection.query(`SELECT prihlasovaciHeslo, ZakaznikID, Jmeno FROM Zakaznici WHERE prihlasovaciJmeno = "${req.body.username}"`, (error, results) => {
         if (error) return console.log(error)
@@ -190,13 +184,14 @@ router.post('/login', (req, res) => {
     })
 })
 
-
+//pridani fotky
 router.post('/fotky', auth.authenticateToken, (req, res) => {
     connection.query(`INSERT INTO Obrazky VALUES (null, "img","${req.files.image.data.toString('base64')}")`, (error, results) => {
         res.redirect('/fotky')
     })
 })
 
+//zobrazeni fotky
 router.get('/fotky', auth.authenticateToken, (req, res) => {
     connection.query('SELECT * FROM Obrazky', (error, results) => {
         if (error) return console.log(error)
@@ -210,7 +205,5 @@ router.get('/fotky', auth.authenticateToken, (req, res) => {
 
     })
 })
-
-
 
 module.exports = router
