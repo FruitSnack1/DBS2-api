@@ -166,7 +166,7 @@ router.get('/sjezdovka/stav/:id', (req, res) => {
 router.post('/zakaznik', (req, res) => {
     console.log(req.body.birthdate)
     req.body.password = cryptoJs.SHA256(req.body.password).toString()
-    connection.query(`CALL addZakaznik("${req.body.firstname}","${req.body.lastname}","${req.body.email}","${req.body.phone}","${req.body.birthdate}","${req.body.username}","${req.body.password}","${req.body.street}",${req.body.cp},"${req.body.city}",${req.body.psc})`, (error, results) => {
+    connection.query(`CALL pridejZakaznika("${req.body.firstname}","${req.body.lastname}","${req.body.email}","${req.body.phone}","${req.body.birthdate}","${req.body.username}","${req.body.password}","${req.body.street}",${req.body.cp},"${req.body.city}",${req.body.psc})`, (error, results) => {
         if (error) return console.log(error)
         res.render('login')
     })
