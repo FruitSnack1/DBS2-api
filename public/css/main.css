@@ -9,3 +9,13 @@
 .img-fotka {
     height: 200px;
 }
+
+.perm {
+    background-color: #b3ae9a;
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    background-position: 95% 10%;
+    border: none;
+    min-width: 400px;
+    min-height: 220px;
+}

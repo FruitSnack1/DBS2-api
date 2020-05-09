@@ -6,7 +6,8 @@ const cryptoJs = require('crypto-js')
 const auth = require('../modules/auth-module.js')
 
 //pripojeni k databazi
-let connection = mysql.createConnection({
+let connection = mysql.createPool({
+    connectionLimit: 100,
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
     user: process.env.MYSQL_USER,
@@ -14,10 +15,10 @@ let connection = mysql.createConnection({
     database: process.env.MYSQL_DB
 })
 
-connection.connect((err) => {
-    if (err) throw err
-    console.log('Database connected...')
-})
+// connection.connect((err) => {
+//     if (err) throw err
+//     console.log('Database connected...')
+// })
 
 //render uvodni stranky
 router.get('/', (req, res) => {
@@ -169,6 +170,7 @@ router.post('/zakaznik', (req, res) => {
 router.post('/login', (req, res) => {
     connection.query(`SELECT prihlasovaciHeslo, ZakaznikID, Jmeno FROM Zakaznici WHERE prihlasovaciJmeno = "${req.body.username}"`, (error, results) => {
         if (error) return console.log(error)
+        if (results.length == 0) return res.status(500).json({ message: "user not found" })
         const hash = cryptoJs.SHA256(req.body.password).toString()
         if (hash === results[0].prihlasovaciHeslo) {
             const tokenUser = {
@@ -181,6 +183,31 @@ router.post('/login', (req, res) => {
             res.redirect('/home')
         } else
             res.status(500).json({ message: 'wrong password' })
+    })
+})
+
+router.get('/karty', auth.authenticateToken, (req, res) => {
+    connection.query(`SELECT * FROM KartyZkazniku WHERE ZakaznikID = ${req.user.id}`, (error, results) => {
+        if (!results)
+            results = []
+        results.map(result => {
+            result.Platnostdo = `${result.Platnostdo.getDay()}-${result.Platnostdo.getMonth()+1}-${result.Platnostdo.getFullYear()}`
+        })
+        console.log(results)
+        res.render('karty', { karty: results })
+    })
+})
+
+router.get('/koupitkartu', auth.authenticateToken, (req, res) => {
+    res.render('koupitkartu')
+})
+
+router.post('/koupitkartu', auth.authenticateToken, (req, res) => {
+    const obj = new Date()
+    const startDate = `${obj.getFullYear()}-${obj.getMonth()+1}-${obj.getDate()}`
+    const endDate = `${obj.getFullYear()}-${obj.getMonth()+1+parseInt(req.body.duration)}-${obj.getDate()}`
+    connection.query(`INSERT INTO KartyZkazniku VALUES (${req.body.duration*100}, "${startDate}", "${endDate}", null, 1,${req.user.id})`, (error, results) => {
+        res.redirect('/karty')
     })
 })
 

@@ -1,13 +1,14 @@
 doctype html
 html(lang='en')
     head
-        title SPD
+        title Moje karty
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
         link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900' rel='stylesheet')
         link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
         link(rel='stylesheet' href='css/all.min.css')
         link(rel='stylesheet' href='scss/style.css')
+        link(rel='stylesheet' href='css/main.css')
         link(rel="icon" href="images/logo.png")
     body
         .wrapper.d-flex.align-items-stretch
@@ -21,7 +22,7 @@ html(lang='en')
                         a(href='/sjezdovky')  
                             i.fas.fa-skiing.mr-2 
                             |Sjezdovky
-                    li
+                    li.active
                         a(href='/karty')  
                             i.fas.fa-id-card.mr-2 
                             |Moje karty
@@ -34,8 +35,20 @@ html(lang='en')
                             i.fas.fa-sign-out-alt.mr-2 
                             |Odhlásit se
             #content.p-4.p-md-5.pt-5
-                h4 Dobrý den #{user.name}
-
+                .row
+                    each karta, i in karty
+                        .col-lg-4.mb-5.d-flex.justify-content-center
+                            .card.perm.shadow
+                                .card-body
+                                    h5.mb-5.font-weight-bold Permanentka
+                                    .row.pt-5
+                                        .col-6
+                                            small Cena
+                                            p #{karta.Cena}Kč
+                                        .col-6
+                                            small Platnost do
+                                            p #{karta.Platnostdo}
+                button.btn.btn-primary(onclick="location.href='/koupitkartu'") Koupit kartu
         script(src='js/jquery.min.js')
         script(src='js/popper.js')
         script(src='js/bootstrap.min.js')
