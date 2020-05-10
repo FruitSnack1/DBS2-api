@@ -191,7 +191,7 @@ router.get('/karty', auth.authenticateToken, (req, res) => {
         if (!results)
             results = []
         results.map(result => {
-            result.Platnostdo = `${result.Platnostdo.getDay()}-${result.Platnostdo.getMonth()+1}-${result.Platnostdo.getFullYear()}`
+            result.Platnostdo = `${result.Platnostdo.getDate()}-${result.Platnostdo.getMonth()+1}-${result.Platnostdo.getFullYear()}`
         })
         console.log(results)
         res.render('karty', { karty: results })
@@ -206,7 +206,7 @@ router.post('/koupitkartu', auth.authenticateToken, (req, res) => {
     const obj = new Date()
     const startDate = `${obj.getFullYear()}-${obj.getMonth()+1}-${obj.getDate()}`
     const endDate = `${obj.getFullYear()}-${obj.getMonth()+1+parseInt(req.body.duration)}-${obj.getDate()}`
-    connection.query(`INSERT INTO KartyZkazniku VALUES (${req.body.duration*100}, "${startDate}", "${endDate}", null, 1,${req.user.id})`, (error, results) => {
+    connection.query(`INSERT INTO KartyZkazniku VALUES (${req.body.duration*100}, "${endDate}", "${startDate}", null, 1,${req.user.id})`, (error, results) => {
         res.redirect('/karty')
     })
 })
